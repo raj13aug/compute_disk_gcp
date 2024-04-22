@@ -71,17 +71,17 @@ resource "google_compute_firewall" "demo-ssh-ipv4" {
 
   allow {
     protocol = "tcp"
-    ports    = [80]
+    ports    = [22]
   }
 
   allow {
     protocol = "udp"
-    ports    = [80]
+    ports    = [22]
   }
 
   allow {
     protocol = "sctp"
-    ports    = [80]
+    ports    = [22]
   }
 
   source_ranges = ["0.0.0.0/0"]
