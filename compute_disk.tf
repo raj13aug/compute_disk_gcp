@@ -6,7 +6,7 @@ resource "google_compute_disk" "additional_disk" {
 }
 resource "google_compute_attached_disk" "attachvmtoaddtnl" {
   disk     = google_compute_disk.additional_disk.id
-  instance = google_compute_instance.demo.name
+  instance = google_compute_instance.demo.id
   zone     = "${local.region}-a"
   depends_on = [
     google_compute_disk.additional_disk
