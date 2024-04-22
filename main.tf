@@ -54,11 +54,11 @@ resource "google_compute_instance" "demo" {
   metadata_startup_script = <<EOT
   sleep 15m
   sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
-  sudo mkdir -p /data-mount
-  sudo mount -o discard,defaults /dev/sdb /data-mount
-  sudo chmod a+w /data-mount
+  sudo mkdir -p /data
+  sudo mount -o discard,defaults /dev/sdb /data
+  sudo chmod a+w /data
   sudo cp /etc/fstab /etc/fstab.backup
-  echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /data-mount ext4 discard,defaults,noatime,nofail 0 2 | sudo tee -a /etc/fstab
+  echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /data ext4 discard,defaults,noatime,nofail 0 2 | sudo tee -a /etc/fstab
 EOT
 
   depends_on = [google_compute_address.external-static-ip]
